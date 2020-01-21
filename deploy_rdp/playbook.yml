@@ -26,15 +26,14 @@
 
 
 - name: Deploy XRPD and Network
-  hosts: all
+  hosts: foundation15.ilt.example.com
   gather_facts: no
   serial:
     - 1
     - 4
     - 100%
   pre_tasks:
-    - debug:
-        msg: "ansible_hostname is ready"
+    - ping:
 
     - name: create a external repo
       yum_repository:

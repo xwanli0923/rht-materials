@@ -10,25 +10,25 @@
 - name: modify the xrdp tittle
   replace:
     path: /etc/xrdp/xrdp.ini
-    regexp: '^name=Xvnc'
+    regexp: '^name=Xvnc$'
     replace: 'name=Red Hat Training' 
  
 - name: modify the xrdp default account
   replace:
     path: /etc/xrdp/xrdp.ini
-    regexp: '^username=ask'
+    regexp: '^username=ask$'
     replace: 'username=kiosk' 
  
 - name: modify the xrdp default password
   replace:
     path: /etc/xrdp/xrdp.ini
-    regexp: '^password=ask'
+    regexp: '^password=ask$'
     replace: 'password=redhat' 
  
 - name: modify the xrdp logo
   replace:
     path: /etc/xrdp/xrdp.ini
-    regexp: '^ls_logo_filename='
+    regexp: '^ls_logo_filename=$'
     replace: 'ls_logo_filename=/usr/share/pixmaps/fedora-logo.png' 
  
 - name: ensure xrdp service is running and enabled
