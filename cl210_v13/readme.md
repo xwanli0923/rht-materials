@@ -8,7 +8,7 @@
 ```bash
 $ git clone https://gitee.com/linuxgeeker/rht-materials.git
 ```
-2. 卸载现有的ipa server
+2. 卸载现有的`ipa server`
 ```bash
 $ ipa-server-install --uninstall -U
 ```
@@ -31,7 +31,7 @@ $ ipa-server-install -p RedHat123^ -a RedHat123^ \
 $ systemctl reboot
 ```
 
-4. 将utiltiy中的ipa证书拷贝出来一份，并转换为PEM格式
+4. 将`utiltiy`中的`ipa`证书拷贝出来一份，并转换为PEM格式
 ```bash
 $ scp root@utility:/etc/ipa/ca.crt /tmp/
 $ openssl x509 -in /tmp/ca.crt -out /tmp/ca.pem -outform PEM
