@@ -51,11 +51,13 @@ $ update-ca-trust
 $ ./ipa_useradd.sh
 ```
 如果您的`utility`节点可以连接互联网，您也可以执行
+
 **通过curl命令**
 ```bash
-$ bash -c "$(https://gitee.com/linuxgeeker/rht-materials/cl210_v13/ipa_useradd.sh)"
+$ bash -c "$(curl -fssL https://gitee.com/linuxgeeker/rht-materials/cl210_v13/ipa_useradd.sh)"
 ```
+
 **通过wget命令**
 ```bash
-$ bash -c "$(https://gitee.com/linuxgeeker/rht-materials/cl210_v13/ipa_useradd.sh -O -)"
+$ bash -c "$(wget https://gitee.com/linuxgeeker/rht-materials/cl210_v13/ipa_useradd.sh -O -)"
 
