@@ -54,10 +54,10 @@ $ ./ipa_useradd.sh
 
 **通过curl命令**
 ```bash
-$ bash -c "$(curl -fssL https://gitee.com/linuxgeeker/rht-materials/cl210_v13/ipa_useradd.sh)"
+$ bash -c "$(curl -fssL https://gitee.com/linuxgeeker/rht-materials/raw/master/cl210_v13/ipa_useradd.sh)"
 ```
 
 **通过wget命令**
 ```bash
-$ bash -c "$(wget https://gitee.com/linuxgeeker/rht-materials/cl210_v13/ipa_useradd.sh -O -)"
+$ bash -c "$(wget https://gitee.com/linuxgeeker/rht-materials/raw/master/cl210_v13/ipa_useradd.sh -O -)"
 
