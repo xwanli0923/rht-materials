@@ -3,11 +3,11 @@
 # 由于红帽CL210 v13 版本，在CL210-RHOSP13.0-1.r2020013017-ILT+VT+ROLE+RAV-7-en_US.icmf中，i
 # IPA服务器证书问题，无法在2021-02-09之后使用，且更新新的course文件也多少有问题，因此使用重建IPA服务器来解决该问题
 
-1. 使用相关命令确保当前的OpenStack集群正常运行
+1. 使用相关命令确保当前的OpenStack集群正常运行。
    由讲师下载该项目文件到本地，并分发给学员
-   ```bash
-   $ git clone https://gitee.com/linuxgeeker/rht-materials.git
-   ```
+```bash
+$ git clone https://gitee.com/linuxgeeker/rht-materials.git
+```
 2. 卸载现有的ipa server
 ```bash
 $ ipa-server-install --uninstall -U
