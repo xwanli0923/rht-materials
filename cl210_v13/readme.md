@@ -44,7 +44,7 @@ $ scp /tmp/ca.pem root@controller0:/var/lib/config-data/puppet-generated/keyston
 ```
 6. 在`controller`执行以下命令
 ```bash
-$ ssh root@controller0 "update-ca-trust"
+$ update-ca-trust
 ```
 7. 在`utility`中，执行以下命令重建用户和组账户信息
 ```bash
