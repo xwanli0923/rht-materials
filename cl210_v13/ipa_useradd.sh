@@ -1,10 +1,11 @@
 #!/bin/bash 
+# Xing Wanli (Augsu Hsing) 
+# https://gitee.com/linuxgeeker
 
-# kinit admin
+# This script is used to restore the original IPA server user and group accounts createdhis script 
 echo 'RedHat123^' | kinit admin
 
-# add architect users ,the uid 1-10
-echo "Add architect users"
+# Add architect users
 for NUMBER in {1..9}
 	do echo redhat | ipa user-add \
 		--first="architect${NUMBER}" \
@@ -16,8 +17,7 @@ for NUMBER in {1..9}
 		--password architect${NUMBER}
 	done
 
-# add developer users ,the uid 11-19
-echo "Add  developer users"
+# Add developer users
 for NUMBER in {1..9}
 	do echo redhat | ipa user-add \
 		--first="developer${NUMBER}" \
@@ -29,7 +29,7 @@ for NUMBER in {1..9}
 		--password developer${NUMBER}
 	done
 
-# add operator users ,the uid 20-28
+# Add operator users
 echo "Add  operator users"
 for NUMBER in {1..9}
 	do echo redhat | ipa user-add \
@@ -43,13 +43,11 @@ for NUMBER in {1..9}
 	done
 
 
-# create OpenStack LDAP Lookup user
+# Create OpenStack LDAP Lookup user
 echo "Create OpenStack LDAP Lookup"
 echo 'RedHat123^' | ipa user-add --first=svc-ldap --last=idm --email=student@example.com --password svc-ldap
 
-
-echo " IPA Groups..."
-# ipa group-add editors --gid=229000002 --desc="Limited admins who can edit other users"
+# Create project groups 
 ipa group-add finance-members 
 ipa group-add finance-swiftoperators 
 ipa group-add finance-admins 
@@ -62,50 +60,54 @@ ipa group-add production-admins
 ipa group-add consulting-members 
 ipa group-add consulting-swiftoperators 
 ipa group-add consulting-admins 
-# ipa group-add trust --desc="Trusts administrators group"
 
-# add architect and operator users to consulting-swiftoperator group
+# Add users to consulting* group
+# Add architects and operators  to consulting-swiftoperator group
 ipa group-add-member consulting-swiftoperators --users=architect{1..9}
 ipa group-add-member consulting-swiftoperators --users=operator{1..9}
 
-# add architect  users to consulting-admins group
+# Add architects to consulting-admins group
 ipa group-add-member consulting-admins --users=architect{1..9}
 
-# add architect and operator users to consulting-members group
+# Add architects and operators to consulting-members group
 ipa group-add-member consulting-members --users=architect{1..9}
 ipa group-add-member consulting-members --users=operator{1..9}
 	
 # ###################################################################
-# add architect and developer users to finance-swiftoperator group
+# Add users to finance-* groups
+# Add architects and developers to finance-swiftoperator group
 ipa group-add-member finance-swiftoperators --users=architect{1..9}
 ipa group-add-member finance-swiftoperators --users=developer{1..9}
 
-# add architect  users to consulting-admins group
+# Add architects  to finance-admins group
 ipa group-add-member finance-admins --users=architect{1..9}
 
-# add architect and developer users to consulting-members group
+# Add architects and developers to finance-members group
 ipa group-add-member finance-members --users=architect{1..9}
 ipa group-add-member finance-members --users=developer{1..9}
 
-# add architect and operator users to production-swiftoperator group
+# ###################################################################
+# Add users to production-* groups
+# Add architects and operators to production-swiftoperator group
 ipa group-add-member production-swiftoperators --users=architect{1..9}
 ipa group-add-member production-swiftoperators --users=operator{1..9}
 
-# add architect  users to production-admins group
+# Add architect  users to production-admins group
 ipa group-add-member production-admins --users=architect{1..9}
 
-# add architect and operator users to production-members group
+# add architects and operators users to production-members group
 ipa group-add-member production-members --users=architect{1..9}
 ipa group-add-member production-members --users=operator{1..9}
 
 # ##################################################
-# add architect and developer users to research-swiftoperator group
+# Add users to research-* groups
+# Add architects and developers to research-swiftoperator group
 ipa group-add-member research-swiftoperators --users=architect{1..9}
 ipa group-add-member research-swiftoperators --users=developer{1..9}
 
-# add architect  users to consulting-admins group
+# Add architects to research-admins group
 ipa group-add-member research-admins --users=architect{1..9}
 
-# add architect and developer users to consulting-members group
+# Add architects and developers to research-members group
 ipa group-add-member research-members --users=architect{1..9}
 ipa group-add-member research-members --users=developer{1..9}
