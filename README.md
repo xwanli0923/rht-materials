@@ -15,4 +15,4 @@
 
 **微信**
 
-<img src="https://gitee.com/linuxgeeker/rht-materials/raw/master/images/person/wechat.jpg"  width=48 /> 
+<img src="https://gitee.com/linuxgeeker/rht-materials/raw/master/images/person/wechat.jpg"  width=128 /> 
