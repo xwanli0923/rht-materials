@@ -15,4 +15,4 @@
 
 **微信**
 
-![Wechat](https://gitee.com/linuxgeeker/rht-materials/raw/master/images/person/wechat.jpg =48x48)
+![Wechat]("https://gitee.com/linuxgeeker/rht-materials/raw/master/images/person/wechat.jpg" "=48x48")
