@@ -15,10 +15,9 @@ for NUMBER in {1..9}
 		--gecos="architect${NUMBER} idm" \
 		--email=student@example.com \
 		--password architect${NUMBER}
-	done
 
 # Add developer users
-	do echo redhat | ipa user-add \
+    echo redhat | ipa user-add \
 		--first="developer${NUMBER}" \
 		--last=idm \
 		--cn="developer${NUMBER} idm" \
@@ -26,11 +25,10 @@ for NUMBER in {1..9}
 		--gecos="developer${NUMBER} idm" \
 		--email=student@example.com \
 		--password developer${NUMBER}
-	done
 
 # Add operator users
 echo "Add  operator users"
-	do echo redhat | ipa user-add \
+	  echo redhat | ipa user-add \
 		--first="operator${NUMBER}" \
 		--last=idm \
 		--cn="operator${NUMBER} idm" \
@@ -38,7 +36,7 @@ echo "Add  operator users"
 		--gecos="operator${NUMBER} idm" \
 		--email=student@example.com \
 		--password operator${NUMBER}
-	done
+done
 
 
 # Create OpenStack LDAP Lookup user
