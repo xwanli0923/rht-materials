@@ -18,7 +18,6 @@ for NUMBER in {1..9}
 	done
 
 # Add developer users
-for NUMBER in {1..9}
 	do echo redhat | ipa user-add \
 		--first="developer${NUMBER}" \
 		--last=idm \
@@ -31,7 +30,6 @@ for NUMBER in {1..9}
 
 # Add operator users
 echo "Add  operator users"
-for NUMBER in {1..9}
 	do echo redhat | ipa user-add \
 		--first="operator${NUMBER}" \
 		--last=idm \
