@@ -10,8 +10,11 @@
 
 **Email**
  
-办公：<p><a href="mailto:xwl@cloudshelledu.com">xwl@cloudshelledu.com</a></p>
-个人：<p><a href="mailto:xingwanli@outlook.com">xingwanli@outlook.com</a></p>
+办公：<a href="mailto:xwl@cloudshelledu.com">xwl@cloudshelledu.com</a>
+个人：<a href="mailto:xingwanli@outlook.com">xingwanli@outlook.com</a>
 
 **微信**
-![Wechat](https://gitee.com/linuxgeeker/rht-materials/blob/master/images/person/wechat.jpg)
+
+微信号: Augus275966441
+
+![Wechat](https://gitee.com/linuxgeeker/rht-materials/raw/master/images/person/wechat.jpg)
