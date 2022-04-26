@@ -27,7 +27,6 @@ for NUMBER in {1..9}
 		--password developer${NUMBER}
 
 # Add operator users
-echo "Add  operator users"
 	  echo redhat | ipa user-add \
 		--first="operator${NUMBER}" \
 		--last=idm \
@@ -36,7 +35,7 @@ echo "Add  operator users"
 		--gecos="operator${NUMBER} idm" \
 		--email=student@example.com \
 		--password operator${NUMBER}
-done
+  done
 
 
 # Create OpenStack LDAP Lookup user
