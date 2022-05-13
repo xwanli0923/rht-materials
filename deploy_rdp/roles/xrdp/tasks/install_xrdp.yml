@@ -1,0 +1,59 @@
+---
+- hosts: all
+  gather_facts: no
+  remote_user: root
+  tasks:
+    - name: download xrdp yum repository config 
+      get_url:
+        url:  http://foundation0.ilt.example.com/slides/xrdp/xrdp.repo
+        dest: /etc/yum.repos.d/xrdp.repo
+        force: yes
+
+    - name: install xrdp package on student hosts
+      yum:
+        name: 
+          - tigervnc-server
+          - xrdp
+        state: present
+
+    - name: modify the xrdp tittle
+      replace:
+        path: /etc/xrdp/xrdp.ini
+        regexp: '^name=Xvnc'
+        replace: 'name=Red Hat Training' 
+
+    - name: modify the xrdp default account
+      replace:
+        path: /etc/xrdp/xrdp.ini
+        regexp: '^username=ask'
+        replace: 'username=kiosk' 
+
+    - name: modify the xrdp default password
+      replace:
+        path: /etc/xrdp/xrdp.ini
+        regexp: '^password=ask'
+        replace: 'password=redhat' 
+
+    - name: modify the xrdp logo
+      replace:
+        path: /etc/xrdp/xrdp.ini
+        regexp: '^ls_logo_filename='
+        replace: 'ls_logo_filename=/usr/share/pixmaps/fedora-logo.png' 
+
+    - name: ensure xrdp service is running and enabled
+      service:
+        name: xrdp.service
+        enabled: yes
+        state: started
+
+    - name: permit 3389/tcp port to firewalld
+      firewalld:
+        port: "{{ item }}" 
+        zone: external
+        permanent: yes
+        immediate: yes
+        state: enabled
+      loop:
+        - 3389/tcp
+        - 22/tcp
+

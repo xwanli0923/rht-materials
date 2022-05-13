@@ -1,0 +1,41 @@
+---
+# tasks file for roles/config_net
+- name: copy external ip config file to managed hosts
+  template:
+    src: ifcfg-enp4s0.j2
+    dest: /etc/sysconfig/network-scripts/ifcfg-enp4s0
+
+- name: repair 10G enp1s0f1 ifcfg
+  copy:
+    src: ifcfg-enp1s0f1
+    dest: /etc/sysconfig/network-scripts/ifcfg-enp1s0f1
+
+- name: generate the UUID for enp4s0
+  shell: echo UUID=$(uuidgen enp4s0) >> /etc/sysconfig/network-scripts/ifcfg-enp4s0
+
+- name: generate the UUID for enp1s0f1
+  shell: echo UUID=$(uuidgen enp1s0f1) >> /etc/sysconfig/network-scripts/ifcfg-enp1s0f1
+
+- name: restart the network service
+  service:
+    name: NetworkManager
+    state: restarted
+
+- name: allow 22/tcp and 3389/tcp through firewall external zone
+  firewalld:
+    zone: external
+    state: enabled
+    permanent: yes
+    immediate: yes
+    port: "{{ item }}"
+  loop:
+    - 22/tcp
+    - 3389/tcp
+
+      #- name: allow 3389/tcp through firewall
+      #  firewalld:
+      #    zone: external
+      #    state: present
+      #    permanent: yes
+      #    immediate: yes
+      #    port: 3389/tcp

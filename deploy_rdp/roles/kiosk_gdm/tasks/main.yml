@@ -1,0 +1,18 @@
+---
+# tasks file for roles/kiosk_gdm
+#- name: synchronize kiosk gdm profile
+#  copy:
+#    src: kiosk_gdm.tgz
+#    dest: /tmp/kiosk_gdm.tgz
+#
+- name: extract kiosk_gdm.tgz to kiosk home directory
+  unarchive:
+    src: kiosk_gdm.tgz
+    dest: /home/kiosk
+    owner: kiosk
+
+- name: disable kiosk user auto login
+  replace:
+    path: /etc/gdm/custom.conf-foundation
+    regexp: '^AutomaticLoginEnable=True'
+    replace: 'AutomaticLoginEnable=False'
