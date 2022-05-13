@@ -2,6 +2,7 @@
 
 ## 1. Download
 ✅Login `root@foundation0`
+
 ✅Please copy this folder `deploy_rdp` to the root home directory
 ```bash
 $ tree -d deploy_rdp
