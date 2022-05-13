@@ -10,7 +10,7 @@
    29 hosts: all
    ``` 
 
-3. Run
+## 3. Run
 ✅Run command `ansible-playbook playbook.yml`:
    ```bash
    $ ansible-playbook playbook.yml
