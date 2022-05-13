@@ -50,7 +50,3 @@
   tasks:
     - name: reboot foundations
       reboot:
-
-    - debug:
-        msg: "Please push course to foundations"
-      delegate_to: localhost
