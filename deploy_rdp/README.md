@@ -17,22 +17,29 @@ deploy_rdp
     │   ├── meta
     │   ├── tasks
     │   └── templates
+    ├── f0server
+    │   ├── defaults
+    │   ├── files
+    │   ├── handlers
+    │   ├── meta
+    │   ├── tasks
+    │   ├── templates
+    │   ├── tests
+    │   └── vars
     ├── kiosk_gdm
     │   ├── defaults
     │   ├── files
     │   ├── meta
     │   ├── tasks
-    │   ├── templates
     │   └── tests
     └── xrdp
         ├── defaults
-        ├── files
         ├── handlers
         ├── meta
         ├── tasks
-        ├── templates
         ├── tests
         └── vars
+
 ```
 
 ## 2. Modify
