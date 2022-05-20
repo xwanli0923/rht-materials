@@ -17,3 +17,4 @@
   unarchive:
     src: 'network-scripts.tgz'
     dest: /etc/sysconfig/network-scripts/
+  notify: restart network

@@ -1,2 +1,7 @@
 ---
 # handlers file for roles/f0server
+- name: restart network
+  systemd:
+    name: NetworkManager
+    state: restarted
+
