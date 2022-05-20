@@ -49,6 +49,7 @@
     - config_net
     - kiosk_gdm
     - xrdp
+    
   tasks:
     - name: reboot foundations
       reboot:
