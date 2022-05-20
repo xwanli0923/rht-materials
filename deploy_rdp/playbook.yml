@@ -29,7 +29,8 @@
 
 
 - name: Deploy XRPD and Network
-  hosts: foundation15.ilt.example.com
+  hosts: 
+    - all
   gather_facts: no
   serial:
     - 1
