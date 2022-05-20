@@ -1,0 +1,19 @@
+---
+# tasks file for roles/f0server
+- name: get network scripts ifcfgs list
+  shell: "ls /etc/sysconfig/network-scripts"
+  register: ifcfg_list
+  changed_when: false
+
+
+- name: remove network old ifcfgs
+  file:
+    path: "/etc/sysconfig/network-scripts/{{ item }}"
+    state: absent
+  loop: "{{ ifcfg_list.stdout_lines }}"
+
+
+- name: synchronize local ifcfgs 
+  unarchive:
+    src: 'network-scripts.tgz'
+    dest: /etc/sysconfig/network-scripts/
