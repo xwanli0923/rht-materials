@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Shut down at 00:30 every day
+      cron:
+        name: shutdown_everyday
+        minute: "30"
+        hour: "0"
+        user: root
+        job: "systemtl poweroff"
+        state: "{{ state }}"

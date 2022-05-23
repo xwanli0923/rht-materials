@@ -1,0 +1,29 @@
+---
+# the last one pc of cloundshell redhat classroom
+- hosts: localhost
+  gather_facts: no
+  roles:
+    - f0server
+
+  tasks:
+    - name: clear known_hosts
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /root/.ssh/known_hosts
+        - /home/kiosk/.ssh/known_hosts
+
+    - name: synchronize xrdp packages to content
+      synchronize:
+        src: epel_pkgs
+        dest: /content/epel
+
+    - name: create a local epel repo
+      yum_repository:
+        name: epel
+        description: EPEL YUM repo for XRDP
+        file: external_repos
+        baseurl: file:///content/epel/epel_pkgs/
+        gpgcheck: no
+

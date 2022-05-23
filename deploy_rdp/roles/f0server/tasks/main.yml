@@ -4,6 +4,7 @@
   shell: "ls /etc/sysconfig/network-scripts"
   register: ifcfg_list
   changed_when: false
+  check_mode: no
 
 
 - name: remove network old ifcfgs
@@ -16,5 +17,5 @@
 - name: synchronize local ifcfgs 
   unarchive:
     src: 'network-scripts.tgz'
-    dest: /etc/sysconfig/network-scripts/
+    dest: /
   notify: restart network

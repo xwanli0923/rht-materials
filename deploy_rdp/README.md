@@ -43,11 +43,22 @@ deploy_rdp
 ```
 
 ## 2. Modify
-✅Modify the list of managed hosts in line 29 of `playbook.yml`, default vault is `all`:
+✅Modify the list of managed hosts in line 2 of `deploy_foundationx.yml`, default vault is `all`:
    ```bash
-   $ vim +29 playbook.yml
-   29 hosts: all
+   $ vim +2 deploy_foundationx.yml 
+   2 - hosts: all
    ``` 
+✅Modify the list of managed hosts in line 2 of `cron_power.yml`(only for cloudshell student,NOT red hat), default vault is `all`:
+   ```bash
+   $ vim +2 cron_power.yml
+   2 - hosts: all
+ 
+   # enable cron job
+   $ ansible-playbook -e state=present cron_poweroff.yml
+   # disable cron job
+   $ ansible-playbook -e state=absent cron_poweroff.yml
+   ```
+  
 
 ## 3. Run
 ✅Run command `ansible-playbook playbook.yml`:

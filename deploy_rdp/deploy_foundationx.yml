@@ -1,0 +1,26 @@
+- hosts:
+    - all
+  gather_facts: no
+  serial:
+    - 1
+    - 4
+    - 100%
+  pre_tasks:
+    - ping:
+
+    - name: create a external repo
+      yum_repository:
+        name: epel
+        description: EPEL YUM repo for XRDP
+        file: external_repos
+        baseurl: http://172.25.254.250/epel/epel_pkgs/
+        gpgcheck: no
+  roles:
+    - config_net
+    - kiosk_gdm
+    - xrdp
+
+  tasks:
+    - name: reboot foundations
+      reboot:
+
