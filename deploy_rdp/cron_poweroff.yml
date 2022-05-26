@@ -9,5 +9,5 @@
         minute: "30"
         hour: "0"
         user: root
-        job: "systemtl poweroff"
+        job: "systemctl poweroff"
         state: "{{ state }}"
