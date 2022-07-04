@@ -1,0 +1,47 @@
+---
+# standalone foundation0 custom config network, xrdp and gdm
+- hosts: localhost
+  vars:
+    - external_gw: 172.16.70.1
+  pre_tasks:
+    - name: synchronize xrdp packages to content
+      synchronize:
+        src: epel_pkgs
+        dest: /content/epel
+
+    - name: create a local epel repo
+      yum_repository:
+        name: epel
+        description: EPEL YUM repo for XRDP
+        file: external_repos
+        baseurl: file:///content/epel/epel_pkgs/
+        gpgcheck: no
+
+  roles:
+    - kiosk_gdm
+    - xrdp
+
+  tasks:
+    - name: copy external ip config file to managed hosts
+      template:
+        src: local/ifcfg-enp4s0.j2
+        dest: /etc/sysconfig/network-scripts/ifcfg-{{ ETHERNET }}
+    
+    - name: generate the UUID for {{ ETHERNET }}
+      shell: echo UUID=$(uuidgen {{ ETHERNET }}) >> /etc/sysconfig/network-scripts/ifcfg-{{ ETHERNET }}
+    
+    - name: restart the network service
+      service:
+        name: NetworkManager
+        state: restarted
+    
+    - name: allow 22/tcp and 3389/tcp through firewall external zone
+      firewalld:
+        zone: external
+        state: enabled
+        permanent: yes
+        immediate: yes
+        port: "{{ item }}"
+      loop:
+        - 22/tcp
+        - 3389/tcp
