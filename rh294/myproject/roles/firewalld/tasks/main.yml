@@ -1,0 +1,12 @@
+---
+# tasks file for roles/firewalld
+- name: Permits custom port(s) to firewalld
+  firewalld:
+    port: "{{ item }}"
+    permanent: yes
+    immediate: yes
+    state: enabled
+  loop:
+    - 80/tcp
+    - 443/tcp
+ 

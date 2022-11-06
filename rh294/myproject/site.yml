@@ -1,0 +1,14 @@
+---
+- hosts: all
+  vars:
+    - selinux_state: permissive
+  roles:
+  - role: rhel-system-roles.selinux
+
+- hosts: serverd serverb serverc
+  roles:
+    - apache
+
+- hosts: servera
+  roles:
+    - balance

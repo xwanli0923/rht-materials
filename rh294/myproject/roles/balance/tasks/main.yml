@@ -1,0 +1,53 @@
+---
+# tasks file for roles/balance
+- name: install nginx
+  yum:
+    name: nginx
+    state: present
+
+- name: create private kyes directory
+  file:
+    path: /etc/pki/nginx/private
+    state: directory
+    recurse: yes
+
+- name: Generate an OpenSSL private key with a different size (2048 bits)
+  openssl_privatekey:
+    path: /etc/pki/nginx/private/{{ ansible_facts['fqdn'] }}.pem
+    size: 2048
+
+- name: Force regenerate an OpenSSL Certificate Signing Request
+  openssl_csr:
+    path: /etc/pki/nginx/{{ ansible_facts['fqdn'] }}.csr
+    privatekey_path: /etc/pki/nginx/private/{{ ansible_facts['fqdn'] }}.pem
+    force: yes
+    common_name: "{{ ansible_facts['fqdn'] }}"
+
+- name: Generate a Self Signed OpenSSL certificate
+  openssl_certificate:
+    path: /etc/pki/nginx/{{ ansible_facts['fqdn'] }}.crt
+    privatekey_path: /etc/pki/nginx/private/{{ ansible_facts['fqdn'] }}.pem
+    csr_path: /etc/pki/nginx/{{ ansible_facts['fqdn'] }}.csr
+    provider: selfsigned
+
+- name: copy nginx.conf.j2 to {{ ansible_facts['fqdn'] }}
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify:
+    - restart nginx service
+
+- name: ensure nginx is running and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: true
+
+- name: ensure 443/tcp to firewalld
+  firewalld:
+    port: 443/tcp
+    permanent: yes
+    immediate: yes
+    state: enabled
+
+

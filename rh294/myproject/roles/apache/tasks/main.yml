@@ -1,0 +1,19 @@
+---
+# tasks file for roles/apache
+- name: install httpd package
+  yum:
+    name: httpd
+    state: present
+
+- name: create an index.html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: apache
+    group: apache
+
+- name: started httpd and enabled
+  service:
+    name: httpd
+    state: started
+    enabled: true
